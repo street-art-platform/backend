@@ -1,0 +1,38 @@
+version: '3.6'
+services:
+  app:
+    container_name: street_art_api
+    # network_mode: host
+    ports:
+      - "3000:3000"
+    build:
+      dockerfile: express.dockerfile
+      context: .
+      # args:
+      #   - PORT=${PORT}
+    restart: always
+    env_file:
+      - .env  
+  authorizer:
+    container_name: auth_server
+    # network_mode: host
+    ports:
+      - "7079:7079"
+    restart: always
+    image: lakhansamani/authorizer:1.1.33
+    env_file:
+      - auth.env 
+  graph:
+    container_name: graph_api
+    # network_mode: host
+    image: hasura/graphql-engine:v2.23.0
+    ports:
+      - "8080:8080"
+    restart: always
+    depends_on:
+      - app
+      - authorizer
+    environment:
+      HASURA_GRAPHQL_ENABLE_CONSOLE: "true"
+    env_file:
+      - .env
