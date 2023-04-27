@@ -34,5 +34,6 @@ services:
       - authorizer
     environment:
       HASURA_GRAPHQL_ENABLE_CONSOLE: "true"
+      HASURA_GRAPHQL_CORS_DOMAIN: "*"
     env_file:
       - .env
