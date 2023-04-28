@@ -2,7 +2,8 @@ SET check_function_bodies = false;
 CREATE TABLE public.users (
     id integer NOT NULL,
     name text NOT NULL,
-    age integer NOT NULL
+    age integer NOT NULL,
+    gender text
 );
 CREATE SEQUENCE public.users_id_seq
     AS integer

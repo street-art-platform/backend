@@ -1,6 +1,19 @@
-actions: []
+actions:
+  - name: login_hook
+    definition:
+      kind: synchronous
+      handler: http://host.docker.internal:3000/login_hook
+      forward_client_headers: true
+      headers:
+        - name: ACTION_SECRET
+          value_from_env: HASURA_ACTION_SECRET
+    permissions:
+      - role: user
+      - role: anonymous
 custom_types:
-    enums: []
-    input_objects: []
-    objects: []
-    scalars: []
+  enums: []
+  input_objects:
+    - name: LoginHookInput
+  objects:
+    - name: LoginHookOutput
+  scalars: []

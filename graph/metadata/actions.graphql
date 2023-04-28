@@ -1,0 +1,17 @@
+type Mutation {
+  login_hook(
+    objects: LoginHookInput!
+  ): LoginHookOutput
+}
+
+input LoginHookInput {
+  email: String!
+  password: String!
+}
+
+type LoginHookOutput {
+  accessToken: String!
+  authToken: String!
+  userId: String!
+}
+

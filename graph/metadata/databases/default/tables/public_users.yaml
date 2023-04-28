@@ -1,0 +1,12 @@
+table:
+  name: users
+  schema: public
+select_permissions:
+  - role: user
+    permission:
+      columns:
+        - age
+        - id
+        - gender
+        - name
+      filter: {}
