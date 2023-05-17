@@ -1,0 +1,7 @@
+table:
+  name: pictures
+  schema: public
+object_relationships:
+  - name: street_art
+    using:
+      foreign_key_constraint_on: art_id

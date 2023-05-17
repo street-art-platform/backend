@@ -1,0 +1,3 @@
+table:
+  name: free_walls
+  schema: public

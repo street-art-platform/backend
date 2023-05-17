@@ -1,12 +1,67 @@
 table:
   name: users
   schema: public
-select_permissions:
-  - role: user
-    permission:
-      columns:
-        - age
-        - id
-        - gender
-        - name
-      filter: {}
+array_relationships:
+  - name: comments
+    using:
+      foreign_key_constraint_on:
+        column: user_id
+        table:
+          name: comment
+          schema: public
+  - name: donees
+    using:
+      foreign_key_constraint_on:
+        column: donee_id
+        table:
+          name: donation
+          schema: public
+  - name: donors
+    using:
+      foreign_key_constraint_on:
+        column: donor_id
+        table:
+          name: donation
+          schema: public
+  - name: follower
+    using:
+      foreign_key_constraint_on:
+        column: followee_id
+        table:
+          name: followers
+          schema: public
+  - name: following
+    using:
+      foreign_key_constraint_on:
+        column: follower_id
+        table:
+          name: followers
+          schema: public
+  - name: liked_arts
+    using:
+      foreign_key_constraint_on:
+        column: user_id
+        table:
+          name: like
+          schema: public
+  - name: social_links
+    using:
+      foreign_key_constraint_on:
+        column: user_id
+        table:
+          name: social_medias
+          schema: public
+  - name: street_arts
+    using:
+      foreign_key_constraint_on:
+        column: user_id
+        table:
+          name: street_arts
+          schema: public
+  - name: walls
+    using:
+      foreign_key_constraint_on:
+        column: user_id
+        table:
+          name: free_walls
+          schema: public

@@ -1,0 +1,32 @@
+table:
+  name: street_arts
+  schema: public
+object_relationships:
+  - name: type
+    using:
+      foreign_key_constraint_on: type_id
+  - name: user
+    using:
+      foreign_key_constraint_on: user_id
+array_relationships:
+  - name: comments
+    using:
+      foreign_key_constraint_on:
+        column: art_id
+        table:
+          name: comment
+          schema: public
+  - name: likes
+    using:
+      foreign_key_constraint_on:
+        column: art_id
+        table:
+          name: like
+          schema: public
+  - name: pictures
+    using:
+      foreign_key_constraint_on:
+        column: art_id
+        table:
+          name: pictures
+          schema: public

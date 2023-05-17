@@ -1,0 +1,11 @@
+table:
+  name: artists
+  schema: public
+insert_permissions:
+  - role: artist
+    permission:
+      check: {}
+      columns:
+        - gender
+        - id
+        - name

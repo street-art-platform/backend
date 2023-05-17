@@ -1,0 +1,16 @@
+table:
+  name: donation
+  schema: public
+object_relationships:
+  - name: donations_accepted
+    using:
+      manual_configuration:
+        column_mapping:
+          donee_id: id
+        insertion_order: null
+        remote_table:
+          name: users
+          schema: public
+  - name: donations_given
+    using:
+      foreign_key_constraint_on: donor_id
