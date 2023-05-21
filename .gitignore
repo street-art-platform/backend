@@ -3,3 +3,4 @@ node_modules/
 trust-config.json
 
 .env
+auth.env
