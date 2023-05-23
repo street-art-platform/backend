@@ -72,7 +72,7 @@ module.exports = async (req, res) => {
       mutation ($userData: users_insert_input!) {
         copy: insert_users_one(
           object: $userData
-          on_conflict: { constraint: users_email_key, update_columns: [] }
+          on_conflict: { constraint: users_email_key, update_columns: [role] }
         ) {
           id
         }
@@ -94,14 +94,14 @@ module.exports = async (req, res) => {
       },
     });
 
-    console.log(respObj);
+    let muId = respObj.data && respObj.data.copy && respObj.data.copy.id;
 
     let payload = {
-      sub: uId,
+      sub: muId,
       iat: Math.floor(Date.now() / 1000),
       metadata: {
         roles: ["user", "artist", "tourist", "admin"],
-        "x-hasura-user-id": uId,
+        "x-hasura-user-id": muId,
         "x-hasura-default-role": "user",
         "x-hasura-role": user.roles[0],
       },
@@ -110,7 +110,8 @@ module.exports = async (req, res) => {
     let token = jwt.sign(payload, privateKey, { algorithm: "RS256" });
 
     return res.send({
-      userId: uId,
+      userRemId: uId,
+      userId: muId,
       authToken: at,
       accessToken: token,
     });
